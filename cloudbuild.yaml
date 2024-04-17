@@ -1,26 +1,13 @@
 steps:
-  # Step 1: Check the commit message
-  - name: 'gcr.io/cloud-builders/git'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        if [[ $(git log -1 --pretty=%B) == *"to deploy"* ]]; then
-          echo "Commit message contains 'to deploy', proceeding with build."
-        else
-          echo "Skipping build because commit message does not contain 'to deploy'."
-          exit 0
-        fi
-
-  # Step 2: Build the Docker image
+  # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/continuous-deployment-practice/continuous-deployment-trial:$SHORT_SHA', '.']
 
-  # Step 3: Push the Docker image to Container Registry
+  # Step 2: Push the Docker image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/continuous-deployment-practice/continuous-deployment-trial:$SHORT_SHA']
 
-  # Step 4: Deploy to Cloud Run
+  # Step 3: Deploy to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
