@@ -9,4 +9,4 @@ steps:
 
   # Step 3: Deploy to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['beta', 'run', 'deploy', 'continuous-deployment-practice', '--region=europe-west1', '--platform=managed', '--image=gcr.io/continuous-deployment-practice/continuous-deployment-trial:$SHORT_SHA']
+    args: ['beta', 'run', 'deploy', 'continuous-deployment-trial', '--region=europe-west1', '--platform=managed', '--image=gcr.io/continuous-deployment-practice/continuous-deployment-trial:$SHORT_SHA']
