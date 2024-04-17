@@ -1,8 +1,8 @@
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/continuous-deployment-practice:$SHORT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/continuous-deployment-practice/continuous-deployment-trial:$SHORT_SHA', '.']
 
   # Step 2: Push the Docker image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/continuous-deployment-practice:$SHORT_SHA']
+    args: ['push', 'gcr.io/continuous-deployment-practice/continuous-deployment-trial:$SHORT_SHA']
